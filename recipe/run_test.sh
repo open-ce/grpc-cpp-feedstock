@@ -1,6 +1,6 @@
 #!/bin/bash
 # *****************************************************************
-# (C) Copyright IBM Corp. 2019, 2021. All Rights Reserved.
+# (C) Copyright IBM Corp. 2021. All Rights Reserved.
 # (C) Copyright 2015-2021, conda-forge contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
