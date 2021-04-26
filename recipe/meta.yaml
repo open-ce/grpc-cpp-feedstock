@@ -32,7 +32,7 @@ requirements:
     - openssl     # [build_platform != target_platform]
     - zlib        # [build_platform != target_platform]
   host:
-    - abseil-cpp  {{ abseil-cpp }}
+    - abseil-cpp  {{ abseil_cpp }}
     - c-ares
     - libprotobuf {{ protobuf }}
     - re2
