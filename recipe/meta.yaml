@@ -1,0 +1,62 @@
+{% set name = "grpc-cpp" %}
+{% set version = "1.29.1" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/grpc/grpc/archive/v{{ version }}.tar.gz
+  sha256: 0343e6dbde66e9a31c691f2f61e98d79f3584e03a11511fad3f10e3667832a45
+  patches:
+    - aarch64-tcp-header.patch  # [aarch64]
+    - force-protoc-executable.patch
+
+build:
+  number: 1
+  run_exports:
+    - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    # `protoc` is also used for building
+    - libprotobuf {{ protobuf }}
+    - ninja
+    # We need all host deps also in build for cross-compiling
+    - abseil-cpp  # [build_platform != target_platform]
+    - c-ares      # [build_platform != target_platform]
+    - re2         # [build_platform != target_platform]
+    - openssl     # [build_platform != target_platform]
+    - zlib        # [build_platform != target_platform]
+  host:
+    - abseil-cpp  {{ abseil_cpp }}
+    - c-ares
+    - libprotobuf {{ protobuf }}
+    - re2
+    - openssl
+    - zlib
+  run:
+    - zlib
+
+about:
+  home: https://grpc.io/
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: gRPC - A high-performance, open-source universal RPC framework
+  description: |
+    gRPC is a modern, open source, high-performance remote procedure call
+    (RPC) framework that can run anywhere. gRPC enables client and server
+    applications to communicate transparently, and simplifies the building
+    of connected systems.
+
+    This package contains the gRPC C++ libraries and header files, as well
+    as the code generation plugins.
+  doc_url: https://grpc.io/docs/
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
