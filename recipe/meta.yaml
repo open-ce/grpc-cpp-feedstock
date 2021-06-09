@@ -28,7 +28,7 @@ requirements:
     - ninja
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}
-    - libstdccxx-ng  {{ libstdcxx }}
+    - libstdcxx-ng  {{ libstdcxx }}
     # We need all host deps also in build for cross-compiling
     - abseil-cpp  # [build_platform != target_platform]
     - c-ares      # [build_platform != target_platform]
@@ -44,7 +44,7 @@ requirements:
     - zlib
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}
-    - libstdccxx-ng  {{ libstdcxx }}
+    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - zlib
 
