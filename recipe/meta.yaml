@@ -18,6 +18,11 @@ build:
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
   ignore_run_exports:
+    - abseil-cpp
+    - c-ares
+    - re2
+    - openssl
+    - zlib
     - libgcc-ng
     - libstdcxx-ng
 
@@ -53,6 +58,17 @@ requirements:
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}
     - libstdcxx-ng  {{ libstdcxx }}
+
+test:
+  files:
+    - tests/include/*
+  commands:
+    - grpc_cpp_plugin < /dev/null
+
+    - test -f $PREFIX/lib/libgrpc.so
+    - test -f $PREFIX/lib/libgrpc_unsecure.so
+    - test -f $PREFIX/lib/libgrpc++.so
+    - test -f $PREFIX/lib/libgrpc++_unsecure.so
 
 about:
   home: https://grpc.io/
