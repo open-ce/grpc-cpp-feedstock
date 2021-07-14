@@ -18,11 +18,6 @@ build:
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
   ignore_run_exports:
-    - abseil-cpp
-    - c-ares
-    - re2
-    - openssl
-    - zlib
     - libgcc-ng
     - libstdcxx-ng
 
