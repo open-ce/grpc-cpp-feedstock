@@ -1,5 +1,5 @@
 {% set name = "grpc-cpp" %}
-{% set version = "1.29.1" %}
+{% set version = "1.36.4" %}
 
 package:
   name: {{ name | lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/grpc/grpc/archive/v{{ version }}.tar.gz
-  sha256: 0343e6dbde66e9a31c691f2f61e98d79f3584e03a11511fad3f10e3667832a45
+  sha256: 8eb9d86649c4d4a7df790226df28f081b97a62bf12c5c5fe9b5d31a29cd6541a
   patches:
     - aarch64-tcp-header.patch  # [aarch64]
     - force-protoc-executable.patch
 
 build:
-  number: 4
+  number: 1
   string: h{{ PKG_HASH }}_pb{{ protobuf | replace(".*", "")}}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
@@ -47,6 +47,17 @@ requirements:
     - libstdcxx-ng  {{ libstdcxx }}
   run:
     - zlib
+
+test:
+  files:
+    - tests/include/*
+  commands:
+    - grpc_cpp_plugin < /dev/null
+
+    - test -f $PREFIX/lib/libgrpc.so
+    - test -f $PREFIX/lib/libgrpc_unsecure.so
+    - test -f $PREFIX/lib/libgrpc++.so
+    - test -f $PREFIX/lib/libgrpc++_unsecure.so
 
 about:
   home: https://grpc.io/

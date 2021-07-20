@@ -100,7 +100,17 @@ cmake ${CMAKE_ARGS} ..  \
       -DgRPC_ZLIB_PROVIDER="package" \
       -DgRPC_ABSL_PROVIDER="package" \
       -DgRPC_RE2_PROVIDER="package" \
+      -DCMAKE_AR=${AR} \
+      -DCMAKE_RANLIB=${RANLIB} \
+      -DCMAKE_VERBOSE_MAKEFILE=ON \
       -DProtobuf_PROTOC_EXECUTABLE=$BUILD_PREFIX/bin/protoc
 
-ninja install
+ninja install -v
+
+
+# These are in conflict with the re2 package.
+rm -rf ${PREFIX}/include/re2
+rm -rf ${PREFIX}/lib/libre2.a
+rm -rf ${PREFIX}/lib/pkgconfig/re2.pc
+
 popd
