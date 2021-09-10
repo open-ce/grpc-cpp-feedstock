@@ -45,12 +45,12 @@ requirements:
     - c-ares
     - libprotobuf {{ protobuf }}
     - re2
-    - openssl 1.1.1k  # [x86_64 and c_compiler_version == "7.2.*"]
-    - openssl         # [ppc64le or (x86_64 and c_compiler_version == "7.5.*")]
+    - openssl         # [not (x86_64 and c_compiler_version == "7.5.*")]
     - zlib
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
     - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
+    - openssl 1.1.1k                  # [x86_64 and c_compiler_version == "7.2.*"]
   run:
     - zlib
 
