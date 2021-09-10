@@ -32,8 +32,8 @@ requirements:
     - libprotobuf {{ protobuf }}
     - ninja
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}            # [x86_64 and c_compiler_version == "7.2.*"]
-    - libstdcxx-ng  {{ libstdcxx }}      # [x86_64 and c_compiler_version == "7.2.*"]
+    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
     # We need all host deps also in build for cross-compiling
     - abseil-cpp  # [build_platform != target_platform]
     - c-ares      # [build_platform != target_platform]
@@ -45,7 +45,7 @@ requirements:
     - c-ares
     - libprotobuf {{ protobuf }}
     - re2
-    - openssl         # [not (x86_64 and c_compiler_version == "7.5.*")]
+    - openssl     # [not (x86_64 and c_compiler_version == "7.2.*")]
     - zlib
     # Use pins to control cos6/cos7 match
     - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
