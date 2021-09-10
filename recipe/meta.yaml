@@ -13,10 +13,15 @@ source:
     - force-protoc-executable.patch
 
 build:
-  number: 1
+  number: 2
   string: h{{ PKG_HASH }}_pb{{ protobuf | replace(".*", "")}}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
+  ignore_run_exports:
+    - abseil-cpp
+    - openssl
+    - re2
+    - c-ares
 
 requirements:
   build:
@@ -27,8 +32,8 @@ requirements:
     - libprotobuf {{ protobuf }}
     - ninja
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
+    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
     # We need all host deps also in build for cross-compiling
     - abseil-cpp  # [build_platform != target_platform]
     - c-ares      # [build_platform != target_platform]
@@ -40,11 +45,12 @@ requirements:
     - c-ares
     - libprotobuf {{ protobuf }}
     - re2
-    - openssl
+    - openssl     # [not (x86_64 and c_compiler_version == "7.2.*")]
     - zlib
     # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
+    - libgcc-ng  {{ libgcc }}         # [x86_64 and c_compiler_version == "7.2.*"]
+    - libstdcxx-ng  {{ libstdcxx }}   # [x86_64 and c_compiler_version == "7.2.*"]
+    - openssl 1.1.1k                  # [x86_64 and c_compiler_version == "7.2.*"]
   run:
     - zlib
 
