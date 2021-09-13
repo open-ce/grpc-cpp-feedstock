@@ -13,7 +13,7 @@ source:
     - force-protoc-executable.patch
 
 build:
-  number: 4
+  number: 5
   string: h{{ PKG_HASH }}_pb{{ protobuf | replace(".*", "")}}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
