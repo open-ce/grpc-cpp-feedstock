@@ -13,7 +13,7 @@ source:
     - force-protoc-executable.patch
 
 build:
-  number: 3
+  number: 4
   string: h{{ PKG_HASH }}_pb{{ protobuf | replace(".*", "")}}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
@@ -25,8 +25,8 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}             #[ppc_arch != "p10"]
-    - {{ compiler('cxx') }}           #[ppc_arch != "p10"]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake
     # `protoc` is also used for building
     - libprotobuf {{ protobuf }}
