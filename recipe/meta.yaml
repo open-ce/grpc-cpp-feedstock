@@ -18,7 +18,7 @@ build:
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
   ignore_run_exports:
-    - abseil-cpp
+    - libabseil
     - openssl
     - re2
     - c-ares
@@ -32,13 +32,13 @@ requirements:
     - libprotobuf {{ libprotobuf }}
     - ninja
     # We need all host deps also in build for cross-compiling
-    - abseil-cpp  # [build_platform != target_platform]
+    - libabseil  # [build_platform != target_platform]
     - c-ares      # [build_platform != target_platform]
     - re2         # [build_platform != target_platform]
     - openssl     # [build_platform != target_platform]
     - zlib {{ zlib }}        # [build_platform != target_platform]
   host:
-    - abseil-cpp  {{ abseil_cpp }}
+    - libabseil  {{ abseil_cpp }}
     - c-ares
     - libprotobuf {{ libprotobuf }}
     - re2
