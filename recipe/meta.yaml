@@ -8,9 +8,6 @@ package:
 source:
   git_url: https://github.com/grpc/grpc
   git_rev: v{{version}}
-  patches:
-#    - aarch64-tcp-header.patch  # [aarch64]
-#    - force-protoc-executable.patch
 
 build:
   number: 1
