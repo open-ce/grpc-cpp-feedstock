@@ -1,5 +1,5 @@
 {% set name = "grpc-cpp" %}
-{% set version = "1.54.3" %}
+{% set version = "1.59.3" %}
 
 package:
   name: {{ name | lower }}
