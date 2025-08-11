@@ -10,7 +10,7 @@ source:
   git_rev: v{{version}}
 
 build:
-  number: 1
+  number: 2
   string: h{{ PKG_HASH }}_pb{{ protobuf | replace(".*", "")}}_{{ PKG_BUILDNUM }}
   run_exports:
     - {{ pin_subpackage('grpc-cpp', max_pin='x.x') }}
@@ -33,16 +33,16 @@ requirements:
     - c-ares      # [build_platform != target_platform]
     - re2         # [build_platform != target_platform]
     - openssl     # [build_platform != target_platform]
-    - zlib {{ zlib }}        # [build_platform != target_platform]
+    - zlib        # [build_platform != target_platform]
   host:
     - libabseil  {{ abseil_cpp }}
     - c-ares
     - libprotobuf {{ libprotobuf }}
     - re2
-    - zlib {{ zlib }}
+    - zlib
     - openssl
   run:
-    - zlib {{ zlib }}
+    - zlib
     - libprotobuf {{ libprotobuf }}
 
 test:
